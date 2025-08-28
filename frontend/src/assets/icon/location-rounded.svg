@@ -1,0 +1,7 @@
+<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="17" cy="17" r="17" fill="#FD7E1C"/>
+<path d="M24 14C24 17.866 20.866 21 17 21C13.134 21 10 17.866 10 14C10 10.134 13.134 7 17 7C20.866 7 24 10.134 24 14Z" fill="#FFFCF4"/>
+<path d="M17 26.5C11.8 24.5 10.1667 17.3333 10 14H17V26.5Z" fill="#FFFCF4"/>
+<path d="M17 26.5C22.2 24.5 23.8333 17.3333 24 14H17V26.5Z" fill="#FFFCF4"/>
+<circle r="3" transform="matrix(-1 0 0 1 17 14)" fill="#FD7E1C"/>
+</svg>

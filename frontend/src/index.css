@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'product-sans';
+    src: url(/frontend/src/assets/fonts/Product-Sans.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'cotta';
+    src: url(/frontend/src/assets/fonts/Cotta.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@theme {
+    --color-yellow-pastel: #f5c6cb;
+    --color-green-pastel:#42544D;
+    --color-orange-pastel: #FD7E1C;
+    --color-grey-pastel:'#A4A4A4';
+    --color-black-pastel:'#506760';
+}
+
