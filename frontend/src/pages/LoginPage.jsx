@@ -3,7 +3,7 @@ import React from 'react'
 const LoginPage = () => {
   return (
     <div className='mx-auto min-h-screen bg-yellowPastel'>
-        <h1 className='font-cotta text-2xl text-center py-5 text-greenPastel'>just ramen</h1>
+        <h1 className='font-cotta text-2xl text-center py-5 text-greenPastel'> <a href="/">just ramen</a></h1>
 
         <div className='flex items-center justify-center min-h-[calc(100vh-5rem)]'>
 

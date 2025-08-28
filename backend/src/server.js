@@ -1,11 +1,19 @@
 import express from "express";
+import dotenv from "dotenv"
 
-const app = express();  
+import accountsRoutes from "./routes/accountsRoutes.js";
+import { connectDB } from "./config/db.js";
 
-app.get("/api/justramen", (req, res) => {
-  res.send("Hello from JustRamen API!");
-});
+dotenv.config();
 
-app.listen(5001, () => {
-  console.log("Server is running on port 5001");
+const app = express();
+const PORT = process.env.PORT || 5001;
+connectDB();
+
+app.use("/api/accounts", accountsRoutes);
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
 });

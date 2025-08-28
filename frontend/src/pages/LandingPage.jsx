@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 
 const LandingPage = () => {
   return (
-    <div className='container mx-auto bg-yellowPastel'>
+    <div className='p-4 mx-auto min-h-screen bg-yellowPastel'>
         <Navbar />
 
         <div className='grid grid-cols-2 mt-4 p-4 py-10'>
