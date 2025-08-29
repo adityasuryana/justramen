@@ -3,7 +3,6 @@ import { getAllAccounts, getAccountById, createAccount, updateAccount, deleteAcc
 
 const router = express.Router();
 
-
 router.get("/", getAllAccounts);
 router.get("/:id", getAccountById);
 router.post("/", createAccount);

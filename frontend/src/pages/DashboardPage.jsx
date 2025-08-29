@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import Sidebar from '../components/Sidebar';
-import DataTable from 'datatables.net-react';
-import DT from 'datatables.net-dt';
+
 
 
 const DashboardPage = () => {
