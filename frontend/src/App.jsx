@@ -7,6 +7,8 @@ import LoginPage from './pages/LoginPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
 import MenuPage from './pages/MenuPage.jsx'
 import AccountPage from './pages/AccountPage.jsx'
+import StockPage from './pages/StockPage.jsx'
+import InventoryPage from './pages/InventoryPage.jsx'
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/accounts" element={<AccountPage />} />
+        <Route path='/stock' element={<StockPage />} />
+        <Route path='/inventory' element={<InventoryPage />} />
       </Routes>
     </div>
   )
