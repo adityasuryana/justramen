@@ -4,7 +4,7 @@ const AdminNavbar = () => {
   return (
     <div>
         <div className="navbar bg-yellowPastel">
-            <a className="btn btn-ghost text-xl">just ramen</a>
+            <a className="btn btn-ghost text-greenPastel font-cotta text-2xl">just ramen</a>
         </div>
     </div>
   )

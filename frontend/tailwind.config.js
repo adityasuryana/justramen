@@ -18,7 +18,10 @@ export default {
       orangePastel:'#FD7E1C',
       greyPastel:'#A4A4A4',
       blackPastel:'#506760',
-      background:'#EEE'
+      background:'#EEE',
+      light:'#F9F9F9',
+      dark:'#342E37',
+      redPastel:'#dc3545'
     }
   },
   plugins: [daisyui],
