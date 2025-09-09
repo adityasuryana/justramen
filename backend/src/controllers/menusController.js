@@ -31,9 +31,9 @@ export async function createMenu(req, res) {
 }
 
 export async function updateMenu(req, res) {
-    const { name, description, price } = req.body;
+    const { name, description, price, image } = req.body;
     try {
-        const menu = await Menu.findByIdAndUpdate(req.params.id, { name, description, price }, { new: true });
+        const menu = await Menu.findByIdAndUpdate(req.params.id, { name, description, price, image }, { new: true });
         if (!menu) return res.status(404).json({ message: "Menu not found" });
         res.json(menu);
     } catch (error) {

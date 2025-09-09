@@ -4,14 +4,14 @@
 
 @font-face {
     font-family: 'product-sans';
-    src: url(/frontend/src/assets/fonts/Product-Sans.ttf);
+    src: url("./assets/fonts/Product-Sans.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'cotta';
-    src: url(/frontend/src/assets/fonts/Cotta.otf);
+    src: url("./assets/fonts/Cotta.otf");
     font-weight: normal;
     font-style: normal;
 }

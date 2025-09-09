@@ -9,20 +9,24 @@ import MenuPage from './pages/MenuPage.jsx'
 import AccountPage from './pages/AccountPage.jsx'
 import StockPage from './pages/StockPage.jsx'
 import InventoryPage from './pages/InventoryPage.jsx'
+import { ProtectedRouted } from './components/ProtectedRouted.jsx'
 
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/explore-menu" element={<MenuRamen />} />
-        <Route path="/promo" element={<PromoPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/accounts" element={<AccountPage />} />
-        <Route path='/stock' element={<StockPage />} />
-        <Route path='/inventory' element={<InventoryPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/explore-menu" element={<MenuRamen />} />
+
+        <Route element={<ProtectedRouted />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/accounts" element={<AccountPage />} />
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/promo" element={<PromoPage />} />
+          <Route path='/stock' element={<StockPage />} />
+          <Route path='/inventory' element={<InventoryPage />} />
+        </Route>
       </Routes>
     </div>
   )

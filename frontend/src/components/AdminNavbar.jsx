@@ -4,7 +4,7 @@ const AdminNavbar = () => {
   return (
     <div className="navbar bg-yellowPastel w-100">
   <div className="flex-1">
-    <a className="btn btn-ghost font-cotta text-2xl text-greenPastel" href='/'>just ramen</a>
+    <a className="font-cotta text-2xl text-greenPastel" href='/'>just ramen</a>
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1 font-product">
