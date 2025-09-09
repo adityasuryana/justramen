@@ -15,7 +15,7 @@ import { Plus } from "lucide-react"
 import React from "react"
 import { toast } from "sonner"
 
-export function AddAccount({fetchData}) {
+export function AddMenu({fetchData}) {
   const[name, setName] = React.useState('');
   const[price, setPrice] = React.useState('');
   const[description, setDescription] = React.useState('');
@@ -26,7 +26,7 @@ export function AddAccount({fetchData}) {
     const accountData = { name, price, description };
 
     try {
-      const response = await fetch('http://localhost:5001/api/accounts', {
+      const response = await fetch('http://localhost:5001/api/menus', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,16 +35,16 @@ export function AddAccount({fetchData}) {
       });
 
       if (response.ok) {
-        console.log('Account added successfully');
+        console.log('Menu added successfully');
         // Reset form and close dialog
         setName('');
-        setEmail('');
-        setPassword('');
+        setPrice('');
+        setDescription('');
         setIsOpen(false);
-        toast.success('Account added successfully');
+        toast.success('Menu added successfully');
         fetchData()
       } else {
-        console.error('Failed to add account');
+        console.error('Failed to add menu');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -54,12 +54,12 @@ export function AddAccount({fetchData}) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white cursor-pointer"} variant="outline"> <Plus/> Account</Button>
+        <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white cursor-pointer"} variant="outline"> <Plus/> Menu</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <DialogHeader>
-            <DialogTitle>Add Account</DialogTitle>
+            <DialogTitle>Add Menu</DialogTitle>
             <DialogDescription>
               Enter the account details below and click save.
             </DialogDescription>
@@ -77,26 +77,26 @@ export function AddAccount({fetchData}) {
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="email-1">Email</Label>
+              <Label htmlFor="price-1">Price</Label>
               <Input 
-                id="email-1" 
-                name="email" 
-                type="email"
-                placeholder="mail@justramen.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="price-1" 
+                name="price" 
+                type="text"
+                placeholder="Enter price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 required
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="password-1">Password</Label>
+              <Label htmlFor="description-1">Description</Label>
               <Input 
-                id="password-1" 
-                name="password" 
-                type="password" 
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                id="description-1" 
+                name="description" 
+                type="text" 
+                placeholder="Enter description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 required
               />
             </div>
@@ -105,7 +105,7 @@ export function AddAccount({fetchData}) {
             <DialogClose asChild>
               <Button variant="outline" type="button">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Create</Button>
+            <Button type="submit">Save</Button>
           </DialogFooter>
         </form>
       </DialogContent>
