@@ -16,37 +16,35 @@ import React from "react"
 import { toast } from "sonner"
 
 export function AddMenu({fetchData}) {
-  const[name, setName] = React.useState('');
-  const[price, setPrice] = React.useState('');
+  const[item, setItem] = React.useState('');
+  const[quantity, setQuantity] = React.useState('');
   const[description, setDescription] = React.useState('');
-  const[image, setImage] = React.useState('');
   const[isOpen, setIsOpen] = React.useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const menuData = { name, price, description, image };
+    const stockData = { item, quantity, description };
 
     try {
-      const response = await fetch('http://localhost:5001/api/menus', {
+      const response = await fetch('http://localhost:5001/api/stocks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(menuData),
+        body: JSON.stringify(stockData),
       });
 
       if (response.ok) {
         console.log('Menu added successfully');
         // Reset form and close dialog
-        setName('');
-        setPrice('');
+        setItem('');
+        setQuantity('');
         setDescription('');
-        setImage('');
         setIsOpen(false);
-        toast.success('Menu added successfully');
+        toast.success('Stock added successfully');
         fetchData()
       } else {
-        console.error('Failed to add menu');
+        console.error('Failed to add stock');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -61,20 +59,20 @@ export function AddMenu({fetchData}) {
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <DialogHeader>
-            <DialogTitle>Add Menu</DialogTitle>
+            <DialogTitle>Add Stock</DialogTitle>
             <DialogDescription>
-              Enter the account details below and click save.
+              Enter the Stock details below and click save.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="name-1">Name</Label>
+              <Label htmlFor="name-1">Item</Label>
               <Input 
                 id="name-1" 
                 name="name" 
                 placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={item}
+                onChange={(e) => setItem(e.target.value)}
                 required
               />
             </div>
@@ -85,8 +83,8 @@ export function AddMenu({fetchData}) {
                 name="price" 
                 type="text"
                 placeholder="Enter price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
                 required
               />
             </div>
@@ -99,17 +97,6 @@ export function AddMenu({fetchData}) {
                 placeholder="Enter description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </div>
-            <div className="grid gap-3">
-              <Input 
-                id="image-1" 
-                name="image" 
-                type="file" 
-                value={image}
-                placeholder="upload image"
-                onChange={(e) => setImage(e.target.files[0])}
                 required
               />
             </div>

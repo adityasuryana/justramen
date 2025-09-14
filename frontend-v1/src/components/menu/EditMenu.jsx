@@ -19,6 +19,7 @@ export function EditMenu({fetchData, menuID, data}) {
   const[name, setName] = React.useState(data?.name || '');
   const[price, setPrice] = React.useState(data?.price || '');
   const[description, setDescription] = React.useState(data?.description || '');
+  const[image, setImage] = React.useState(data?.image || '');
   const[isOpen, setIsOpen] = React.useState(false);
 
   // Update state when data prop changes
@@ -27,12 +28,13 @@ export function EditMenu({fetchData, menuID, data}) {
       setName(data.name || '');
       setPrice(data.price || '');
       setDescription(data.description || '');
+      setImage(data.image || '');
     }
   }, [data]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const menuData = { name, price, description };
+    const menuData = { name, price, description, image };
 
     try {
       const response = await fetch(`http://localhost:5001/api/menus/${menuID}`, {
@@ -63,6 +65,7 @@ export function EditMenu({fetchData, menuID, data}) {
       setName(data.name || '');
       setPrice(data.price || '');
       setDescription(data.description || '');
+      setImage(data.image || '');
     }
     setIsOpen(false);
   }
@@ -117,6 +120,18 @@ export function EditMenu({fetchData, menuID, data}) {
                 onChange={(e) => setDescription(e.target.value)}
                 required
               />
+            </div>
+            <div className="grip gap-3">
+            <Label htmlFor="edit-image">Image</Label>
+            <Input 
+            id="edit-image"
+            name="image"
+            type="file"
+            placeholder="choose file"
+            value={image}
+            onChange={(e) => setDescription(e.target.value)} 
+            required
+            />
             </div>
           </div>
           <DialogFooter className="mt-4">
