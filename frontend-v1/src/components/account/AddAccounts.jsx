@@ -54,14 +54,14 @@ export function AddAccount({fetchData}) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white cursor-pointer"} variant="outline"> <Plus/> Account</Button>
+        <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white border-0 cursor-pointer"} variant="outline"> <Plus/> Account</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <DialogHeader>
             <DialogTitle>Add Account</DialogTitle>
             <DialogDescription>
-              Enter the account details below and click save.
+              Enter the account details below and click create.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
@@ -103,9 +103,9 @@ export function AddAccount({fetchData}) {
           </div>
           <DialogFooter className={"mt-4"}>
             <DialogClose asChild>
-              <Button variant="outline" type="button">Cancel</Button>
+              <Button className={"border-1 border-black cursor-pointer"} variant="outline" type="button">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Create</Button>
+            <Button className={"bg-green-pastel text-white hover:bg-green-pastel border-0 cursor-pointer"} type="submit">Create</Button>
           </DialogFooter>
         </form>
       </DialogContent>

@@ -19,19 +19,83 @@ export function AddMenu({fetchData}) {
   const[name, setName] = React.useState('');
   const[price, setPrice] = React.useState('');
   const[description, setDescription] = React.useState('');
-  const[image, setImage] = React.useState('');
+  const[image, setImage] = React.useState(null);
   const[isOpen, setIsOpen] = React.useState(false);
+  const[uploading, setUploading] = React.useState(false);
+
+  const handleDialogClose = (open) => {
+    setIsOpen(open);
+    if (!open) {
+      // Reset all form fields when dialog is closed
+      setName('');
+      setPrice('');
+      setDescription('');
+      setImage(null);
+    }
+  };
+
+const uploadImageToCloudinary = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'ramen'); // Use default preset temporarily
+  
+  try {
+    console.log('File details:', { name: file.name, size: file.size, type: file.type });
+    console.log('Cloud name:', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+    console.log('Upload preset:', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+    
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/dib2kpvy9/image/upload`, // Hardcoded for testing
+      {
+        method: 'POST',
+        body: formData,
+      }
+    );
+
+    console.log('Response status:', response.status);
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Upload successful:', data.secure_url);
+      return data.secure_url;
+    } else {
+      const errorData = await response.json();
+      console.error('Cloudinary error response:', errorData);
+      throw new Error(`Failed to upload image: ${JSON.stringify(errorData)}`);
+    }
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw error;
+  }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const menuData = { name, price, description, image };
+    setUploading(true);
 
     try {
+      let imageUrl = '';
+      
+      // Upload image to Cloudinary first if an image is selected
+      if (image) {
+        toast.info('Uploading image...');
+        imageUrl = await uploadImageToCloudinary(image);
+      }
+
+      // Prepare data with the Cloudinary URL
+      const menuData = { 
+        name, 
+        price, 
+        description, 
+        image: imageUrl // This will be the Cloudinary URL or empty string
+      };
+
       const response = await fetch('http://localhost:5001/api/menus', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(menuData),
         body: JSON.stringify(menuData),
       });
 
@@ -41,17 +105,21 @@ export function AddMenu({fetchData}) {
         setName('');
         setPrice('');
         setDescription('');
-        setImage('');
+        setImage(null);
         setIsOpen(false);
         toast.success('Menu added successfully');
-        fetchData()
+        fetchData();
       } else {
         console.error('Failed to add menu');
+        toast.error('Failed to add menu');
       }
     } catch (error) {
       console.error('Error:', error);
+      toast.error('Error uploading image or adding menu');
+    } finally {
+      setUploading(false);
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -63,7 +131,7 @@ export function AddMenu({fetchData}) {
           <DialogHeader>
             <DialogTitle>Add Menu</DialogTitle>
             <DialogDescription>
-              Enter the account details below and click save.
+              Enter the menu details below and click add.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
@@ -72,10 +140,11 @@ export function AddMenu({fetchData}) {
               <Input 
                 id="name-1" 
                 name="name" 
-                placeholder="Your name"
+                placeholder="Menu name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                disabled={uploading}
               />
             </div>
             <div className="grid gap-3">
@@ -88,6 +157,7 @@ export function AddMenu({fetchData}) {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 required
+                disabled={uploading}
               />
             </div>
             <div className="grid gap-3">
@@ -100,25 +170,45 @@ export function AddMenu({fetchData}) {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
+                disabled={uploading}
               />
             </div>
             <div className="grid gap-3">
-              <Input 
-                id="image-1" 
-                name="image" 
-                type="file" 
-                value={image}
-                placeholder="upload image"
+              <Label htmlFor="image-1">Image</Label>
+              <Input
+                id="image-1"
+                name="image"
+                type="file"
+                accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
                 required
+                disabled={uploading}
               />
+              {image && (
+                <div className="mt-2">
+                  <img 
+                    src={URL.createObjectURL(image)} 
+                    alt="Selected" 
+                    className="max-w-full h-32 object-cover rounded border"
+                  />
+                </div>
+              )}
             </div>
           </div>
           <DialogFooter className={"mt-4"}>
             <DialogClose asChild>
-              <Button variant="outline" type="button">Cancel</Button>
+              <Button className={"border-1 border-black cursor-pointer"}
+                onClick={() => handleDialogClose(false)} 
+                variant="outline" 
+                type="button"
+                disabled={uploading}
+              >
+                Cancel
+              </Button>
             </DialogClose>
-            <Button type="submit">Save</Button>
+            <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white border-0 cursor-pointer"} type="submit" disabled={uploading}>
+              {uploading ? 'Uploading...' : 'Add'}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

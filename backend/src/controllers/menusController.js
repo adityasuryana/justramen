@@ -21,7 +21,19 @@ export async function getMenuById(req, res) {
 
 export async function createMenu(req, res) {
     const { name, description, price, image } = req.body;
-    const menu = new Menu({ name, description, price, image });
+    
+    // Basic validation
+    if (!name || !description || !price) {
+        return res.status(400).json({ message: "Name, description, and price are required" });
+    }
+
+    const menu = new Menu({ 
+        name, 
+        description, 
+        price: Number(price), // Ensure price is a number
+        image: image || '' // Handle case where image might be undefined
+    });
+
     try {
         const newMenu = await menu.save();
         res.status(201).json(newMenu);
@@ -32,8 +44,20 @@ export async function createMenu(req, res) {
 
 export async function updateMenu(req, res) {
     const { name, description, price, image } = req.body;
+    
     try {
-        const menu = await Menu.findByIdAndUpdate(req.params.id, { name, description, price, image }, { new: true });
+        const updateData = {};
+        if (name) updateData.name = name;
+        if (description) updateData.description = description;
+        if (price) updateData.price = Number(price);
+        if (image !== undefined) updateData.image = image; // Allow empty string to clear image
+        
+        const menu = await Menu.findByIdAndUpdate(
+            req.params.id, 
+            updateData, 
+            { new: true, runValidators: true }
+        );
+        
         if (!menu) return res.status(404).json({ message: "Menu not found" });
         res.json(menu);
     } catch (error) {

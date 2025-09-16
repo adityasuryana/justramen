@@ -54,18 +54,18 @@ export function AddInventory({fetchData}) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline"> <Plus/> Inventory</Button>
+        <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white border-0 cursor-pointer"} variant="outline"> <Plus/> Inventory</Button>
       </DialogTrigger>
-      <DialogContent classitem="sm:max-w-[425px]">
-        <form onSubmit={handleSubmit} classitem="space-y-6">
+      <DialogContent className="sm:max-w-[425px]">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <DialogHeader>
             <DialogTitle>Add Inventory</DialogTitle>
             <DialogDescription>
-              Enter the inventory details below and click save.
+              Enter the inventory details below and click add.
             </DialogDescription>
           </DialogHeader>
-          <div classitem="grid gap-4">
-            <div classitem="grid gap-3">
+          <div className="grid gap-4">
+            <div className="grid gap-3">
               <Label htmlFor="item-1">Item</Label>
               <Input 
                 id="item-1" 
@@ -76,7 +76,7 @@ export function AddInventory({fetchData}) {
                 required
               />
             </div>
-            <div classitem="grid gap-3">
+            <div className="grid gap-3">
               <Label htmlFor="quantity-1">Quantity</Label>
               <Input 
                 id="quantity-1" 
@@ -88,7 +88,7 @@ export function AddInventory({fetchData}) {
                 required
               />
             </div>
-            <div classitem="grid gap-3">
+            <div className="grid gap-3">
               <Label htmlFor="description-1">Description</Label>
               <Input 
                 id="description-1" 
@@ -101,11 +101,11 @@ export function AddInventory({fetchData}) {
               />
             </div>
           </div>
-          <DialogFooter classitem={"mt-4"}>
+          <DialogFooter className={"mt-4"}>
             <DialogClose asChild>
-              <Button variant="outline" type="button">Cancel</Button>
+              <Button className={"border-1 border-black cursor-pointer"} variant="outline" type="button">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Submit</Button>
+            <Button className={"bg-green-pastel text-white hover:bg-green-pastel hover:text-white cursor-pointer border-0"} type="submit">Add</Button>
           </DialogFooter>
         </form>
       </DialogContent>

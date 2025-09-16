@@ -73,7 +73,7 @@ export function EditMenu({fetchData, menuID, data}) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button className={"bg-orange-pastel text-white hover:bg-orange-pastel hover:text-white border-0 cursor-pointer"} variant="outline" size="icon">
             <Pencil />
         </Button>
       </DialogTrigger>
@@ -140,7 +140,7 @@ export function EditMenu({fetchData, menuID, data}) {
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Update</Button>
+            <Button className={"bg-orange-pastel text-white hover:bg-orange-pastel hover:text-white cursor-pointer border-0"} type="submit">Update</Button>
           </DialogFooter>
         </form>
       </DialogContent>

@@ -70,7 +70,7 @@ export function EditAccount({fetchData, accountsID, data}) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button className={"bg-orange-pastel text-white hover:bg-orange-pastel hover:text-white cursor-pointer border-0"} variant="outline" size="icon">
             <Pencil />
         </Button>
       </DialogTrigger>
@@ -79,7 +79,7 @@ export function EditAccount({fetchData, accountsID, data}) {
           <DialogHeader>
             <DialogTitle>Edit Account</DialogTitle>
             <DialogDescription>
-              Update the account details below and click save.
+              Update the account details below and click update.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
@@ -121,11 +121,11 @@ export function EditAccount({fetchData, accountsID, data}) {
           </div>
           <DialogFooter className="mt-4">
             <DialogClose asChild>
-              <Button variant="outline" type="button" onClick={handleCancel}>
+              <Button className={"border-1 border-black cursor-pointer"} variant="outline" type="button" onClick={handleCancel}>
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Update</Button>
+            <Button className={"bg-orange-pastel text-white hover:bg-orange-pastel hover:text-white cursor-pointer border-0"} type="submit">Update</Button>
           </DialogFooter>
         </form>
       </DialogContent>

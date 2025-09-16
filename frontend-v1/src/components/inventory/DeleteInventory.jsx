@@ -21,7 +21,7 @@ const DeleteInventory = ({fetchData, inventoryID}) => {
         }
     }
   return (
-    <Button variant="outline" size={"icon"} onClick={handleDelete}>
+    <Button className={"bg-red-900 text-white hover:bg-red-900 border-0 hover:text-white cursor-pointer"} variant="outline" size={"icon"} onClick={handleDelete}>
       <Trash2 />
     </Button>
   )

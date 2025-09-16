@@ -20,8 +20,8 @@ const DeleteMenu = ({fetchData, menuID}) => {
         }
       }
   return (
-      <Button onClick={handleDelete} variant="outline" className="">
-        <Trash2 className="mr-2" />
+      <Button className={"bg-red-900 text-white hover:bg-red-900 border-0 hover:text-white cursor-pointer"} onClick={handleDelete} variant="outline">
+        <Trash2 className="" />
       </Button>
     )
 }

@@ -4,7 +4,7 @@ const menuSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String, required: true },
-  image: { data: Buffer, contentType: String },
+  image: { type: String, default: '' }, // Changed to store Cloudinary URL
 },
 { timestamps: true }
 );

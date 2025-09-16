@@ -12,7 +12,6 @@ const DeleteAccounts = ({fetchData, accountsID}) => {
           },
         });
 
-    
         if (response.status === 200) {
             toast.success('Account deleted successfully');
             fetchData();
@@ -21,7 +20,7 @@ const DeleteAccounts = ({fetchData, accountsID}) => {
         }
     }
   return (
-    <Button variant="outline" size={"icon"} onClick={handleDelete}>
+    <Button className={"bg-red-900 text-white hover:bg-red-900 hover:text-white border-0 cursor-pointer"} variant="outline" size={"icon"} onClick={handleDelete}>
       <Trash2 />
     </Button>
   )
