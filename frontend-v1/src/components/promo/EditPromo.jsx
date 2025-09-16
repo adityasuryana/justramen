@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-const EditPromo = () => {
-  return (
-    <div>EditPromo</div>
-  )
-}
-
-export default EditPromo
-=======
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -123,4 +112,3 @@ export function EditPromo({fetchData, promoID, data}) {
     </Dialog>
   )
 }
->>>>>>> 27339e3 (feat: Enhance menu management with image upload to Cloudinary and validation)
