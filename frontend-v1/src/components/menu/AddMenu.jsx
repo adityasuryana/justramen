@@ -96,7 +96,6 @@ const uploadImageToCloudinary = async (file) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(menuData),
-        body: JSON.stringify(menuData),
       });
 
       if (response.ok) {
